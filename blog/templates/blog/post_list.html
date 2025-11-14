@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<h2>Последние посты</h2>
+
+{% for post in posts %}
+    <div class="post">
+        <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        <p>{{ post.content|truncatewords:30 }}</p>
+        <small>
+            Автор: {{ post.author }} | 
+            Опубликовано: {{ post.published_date|date:"d.m.Y H:i" }} |
+            Категория: {{ post.category.name }}
+        </small>
+    </div>
+{% empty %}
+    <p>Пока нет постов.</p>
+{% endfor %}
+{% endblock %}

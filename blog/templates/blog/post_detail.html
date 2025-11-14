@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <article class="post">
+        <h2>{{ post.title }}</h2>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        <p>{{ post.content|linebreaks }}</p>
+        <div class="post-meta">
+            <p><strong>Автор:</strong> {{ post.author }}</p>
+            <p><strong>Опубликовано:</strong> {{ post.published_date|date:"d.m.Y H:i" }}</p>
+            <p><strong>Категория:</strong> {{ post.category.name }}</p>
+        </div>
+        <a href="{% url 'post_list' %}">← Назад к списку постов</a>
+    </article>
+{% endblock %}
