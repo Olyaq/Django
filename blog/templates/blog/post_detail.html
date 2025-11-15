@@ -9,6 +9,26 @@
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
         {% endif %}
         <p>{{ post.content|linebreaks }}</p>
+        <h3>Комментарии</h3>
+
+        {% for comment in comments %}
+            <div class="comment">
+                <p><strong>{{ comment.author }}</strong> ({{ comment.created_date|date:"d.m.Y H:i" }}):</p>
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+        {% empty %}
+            <p>Пока нет комментариев</p>
+        {% endfor %}
+
+        <hr>
+
+        <h3>Добавить комментарий</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit">Отправить</button>
+        </form>
+
         <div class="post-meta">
             <p><strong>Автор:</strong> {{ post.author }}</p>
             <p><strong>Опубликовано:</strong> {{ post.published_date|date:"d.m.Y H:i" }}</p>
