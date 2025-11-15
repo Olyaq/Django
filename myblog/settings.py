@@ -11,7 +11,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',  # добавляем наше приложение
+    'blog',
 ]
 
 # Добавьте в конец файла
@@ -21,7 +21,7 @@ STATIC_URL = '/static/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',   # сессии (обязательно для админки)
+    'django.contrib.sessions.middleware.SessionMiddleware',   # сессии
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',  # авторизация
